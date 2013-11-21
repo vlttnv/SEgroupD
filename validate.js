@@ -1,5 +1,21 @@
 
+var xmlhttp;
+if (window.XMLHttpRequest){
+	// code for IE7+, Firefox, Chrome, Opera, Safari
+	xmlhttp=new XMLHttpRequest();
+}
+else{
+	// code for IE6, IE5
+  	xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+}
+
+function goToMainPage(){
+	// Change to the main URL
+	window.location.href = "main_page.html";
+}
+
 function validatePassword(){
+	"use strict";
 	var element1 = document.getElementById("password1");
 	var element2 = document.getElementById("password2");
 	if (element1.value !== element2.value)
@@ -9,6 +25,7 @@ function validatePassword(){
 }
 
 function validateEmail(){
+	"use strict";
 	var element = document.getElementById("email");
 	var email = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/;
 	if (!element.value.match(email))
@@ -18,6 +35,7 @@ function validateEmail(){
 }
 
 function validateUsername(){
+	"use strict";
 	var element = document.getElementById("user");
 	//TODO: send to server and check if username exists
 	var exists = false;
@@ -29,36 +47,64 @@ function validateUsername(){
 }
 
 function sendForm(){
+	"use strict";
+	var url = ""; //where to send data
 	var username = document.getElementById("user").value;
 	var password = document.getElementById("password1").value;
 	var email = document.getElementById("email").value;
-	//TODO: send to the server
+	//TODO: send to the server, need to test!!!
+	// xmlhttp.open("POST", url);
+	// xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+	// xmlhttp.send("username="+username+"password="+password+"email"+email);	
+	// var response;
+	// xmlhttp.onreadystatechange = function() {
+ //  		if (xmlhttp.readyState == 4 && xmlhttp.status == 200){
+ //    		response = xmlhttp.responseText;
+ //    	}
+ //  	};
+ //  	if (response != null){
+  		goToMainPage();
+  	// }
+}
 
-	goToMainPage();
+function checkPassword(){
+	"use strict";
+	var password = document.getElementById("password").value;
+	var correct = true;
+	//TODO check password
+	
+	return correct;
 }
 
 function validateUser(){
+	"use strict";
 	var username = document.getElementById("user");
 	var password = document.getElementById("password");
 	var error = document.getElementById("error");
 	//TODO check username
-	var exists = false;
+
+	var exists = true;
 	if (username.checkValidity() && password.checkValidity()){
 		if (!exists && !checkPassword()){
 			error.innerHTML = "Invalid username and/or password";
 			return false;
 		}
-		
+		goToMainPage();
 	}	
 }
 
-function checkPassword(){
-	var password = document.getElementById("password").value;
-	var correct = false;
-	//TODO check password
-	return correct;
-}
+// change default submit for registration form
+$(document).ready(function(){
+    $( "#form" ).submit(function( event ) {
+		event.preventDefault();
+		sendForm();
+	});
+});
 
-function goToMainPage(){
-	window.location.href = "main.html";
-}
+// change default submit for login form
+$(document).ready(function(){
+    $( "#login" ).submit(function( event ) {
+		event.preventDefault();
+		validateUser();
+	});
+});
