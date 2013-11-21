@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  	<head>
+   		<meta charset="utf-8">
+   		<title>Create new profile</title>
+    	
+    	<script src="validate.js"></script>
+  	</head>
+
+  	<body>
+      		<form>
+	        	<h2>Enter information below</h2>
+	        	<input type="text" id="user" placeholder="Username" onchange="validateUsername()" required></br>
+	        	<input type="password" id="password1" placeholder="Password" onchange="validatePassword()" required></br>
+	        	<input type="password" id="password2" placeholder="Re-enter password" onchange="validatePassword()" required></br>
+	        	<input type="text" id="email" placeholder="Email address" onchange="validateEmail()" required></br>
+	        	<button type="submit" onclick="sendForm()">Register</button>
+      		</form>
+  	</body>
+</html>
