@@ -7,6 +7,9 @@ $(document).ready(function() {
 	}
 })
 
+var currentStockSymbol;
+var currentStockName;
+
 function loadMainPage() {
 	var stocksTable = document.getElementById("stocks");
 	var key = new XMLHttpRequest();
@@ -38,7 +41,8 @@ function addRow(name, symbol, stocksTable) {
 		var csv = reader.responseText;
 		var data = $.csv.toArrays(csv);
 		var html = '';
-		html += '<tr onclick=\"onClick(\'' + symbol + '\');\">\r\n' +
+		html += '<tr onclick=\"onClick(\'' + symbol 
+				+ '\', \'' + name + '\');\">\r\n' +
 				'<td>' + name + '</td>\r\n' +
 				'<td>' + symbol + '</td>\r\n';
 		var lastDayRow = data[1];
@@ -52,7 +56,14 @@ function addRow(name, symbol, stocksTable) {
 	reader.send();
 }
 
-function onClick(symbol) {
+function follow() {
+	// create the post request to the server to send the following
+	var test = document.getElementById("test");
+	test.innerHTML = "the symbol to follow: " + currentStockSymbol +
+		 ' the name: ' + currentStockName;
+}
+
+function onClick(symbol, name) {
 	var test = document.getElementById('test');
 	test.innerHTML = "HELLO";
 	var stocksTable = document.getElementById("mainContent");
@@ -63,6 +74,11 @@ function onClick(symbol) {
 	initialiseTable(table);
 	var back = document.getElementById("back");
 	back.className = "";
+	var follow = document.getElementById("follow");
+	follow.className = "";
+	currentStockName = name;
+	currentStockSymbol = symbol;
+
 	var reader = new XMLHttpRequest();
 	reader.open('GET', '../data/' + symbol + '.csv');
 	reader.onreadystatechange = function() {
@@ -107,4 +123,6 @@ function goBack() {
 	individualStock.className = "HiddenClass";
 	var mainContent = document.getElementById("mainContent");
 	mainContent.className = "";
+	var follow = document.getElementById("follow");
+	follow.className = "HiddenClass";
 }
