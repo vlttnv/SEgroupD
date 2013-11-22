@@ -1,16 +1,15 @@
 $(document).ready(function() {
 	if (window.File && window.FileReader && window.FileList && window.Blob) {
   	
-		loadMainPage();
+		loadMainPage(null);
 	} else {
 	  alert('The File APIs are not fully supported in this browser.');
 	}
 })
 
-var currentStockSymbol;
-var currentStockName;
+var keyData;
 
-function loadMainPage() {
+function loadMainPage(name) {
 	var stocksTable = document.getElementById("stocks");
 	var key = new XMLHttpRequest();
 	key.open('GET', '../data/key.csv');
@@ -19,12 +18,13 @@ function loadMainPage() {
 			return;
 		}
 		var csvKey = key.responseText;
-		var keyData = $.csv.toArrays(csvKey);
+		keyData = $.csv.toArrays(csvKey);
 		var table = '';
 		for (var row in keyData) {
 			var name = keyData[row][0];
 			var symbol = keyData[row][1];
-			addRow(name, symbol, stocksTable);
+			if (name != null && name.substr(0) == name)
+				addRow(name, symbol, stocksTable);
 		}
 
 	};
@@ -41,8 +41,7 @@ function addRow(name, symbol, stocksTable) {
 		var csv = reader.responseText;
 		var data = $.csv.toArrays(csv);
 		var html = '';
-		html += '<tr onclick=\"onClick(\'' + symbol 
-				+ '\', \'' + name + '\');\">\r\n' +
+		html += '<tr onclick=\"onClick(\'' + symbol + '\');\">\r\n' +
 				'<td>' + name + '</td>\r\n' +
 				'<td>' + symbol + '</td>\r\n';
 		var lastDayRow = data[1];
@@ -56,14 +55,7 @@ function addRow(name, symbol, stocksTable) {
 	reader.send();
 }
 
-function follow() {
-	// create the post request to the server to send the following
-	var test = document.getElementById("test");
-	test.innerHTML = "the symbol to follow: " + currentStockSymbol +
-		 ' the name: ' + currentStockName;
-}
-
-function onClick(symbol, name) {
+function onClick(symbol) {
 	var test = document.getElementById('test');
 	test.innerHTML = "HELLO";
 	var stocksTable = document.getElementById("mainContent");
@@ -74,11 +66,6 @@ function onClick(symbol, name) {
 	initialiseTable(table);
 	var back = document.getElementById("back");
 	back.className = "";
-	var follow = document.getElementById("follow");
-	follow.className = "";
-	currentStockName = name;
-	currentStockSymbol = symbol;
-
 	var reader = new XMLHttpRequest();
 	reader.open('GET', '../data/' + symbol + '.csv');
 	reader.onreadystatechange = function() {
@@ -123,6 +110,17 @@ function goBack() {
 	individualStock.className = "HiddenClass";
 	var mainContent = document.getElementById("mainContent");
 	mainContent.className = "";
-	var follow = document.getElementById("follow");
-	follow.className = "HiddenClass";
+}
+
+
+
+function show(value){
+	var lowercaseValue = value.toLowerCase();
+	var stocksTable = document.getElementById("stocks");
+	var rows = stocksTable.rows;
+	for (var row = 1; row < rows.length; row++){
+		if (value.length != 0 && rows[row].cells[0].innerHTML.toLowerCase().substr(0, value.length) != lowercaseValue && value.length != 0 && rows[row].cells[1].innerHTML.toLowerCase().substr(0, value.length) != lowercaseValue)
+			rows[row].className = "HiddenClass";
+		else rows[row].className = "";
+	}
 }

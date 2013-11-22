@@ -38,9 +38,17 @@ function validateUsername(){
 	"use strict";
 	var element = document.getElementById("user");
 	//TODO: send to server and check if username exists
-
-
-
+	var url = "/username";
+	xmlhttp.open("POST", url);
+	xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+	xmlhttp.send("username="+username);
+	var response;
+	xmlhttp.onreadystatechange = function() {
+  		if (xmlhttp.readyState == 4 && xmlhttp.status == 200){
+    		response = xmlhttp.responseText;
+    	}
+  	};
+  	// TODO
 	var exists = false;
 	if (exists)
 		element.setCustomValidity("Username already exists");
