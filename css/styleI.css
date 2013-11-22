@@ -3,7 +3,7 @@ svg {
 }
 
 path {
-  fill: #3399FF;
+  fill: #99CCFF;
 }
 
 .axis path,
@@ -25,12 +25,6 @@ path {
   stroke-width: 1.5px;
 }
 
-.focus rect {
-	fill: white;
-	stroke: black;
-	stroke-width: 1.5px;
-}
-
 .overlay {
   fill: none;
   pointer-events: all;
@@ -39,4 +33,10 @@ path {
 .focus circle {
   fill: white;
   stroke: red;
+}
+
+.focus rect {
+	fill: white;
+	stroke: black;
+	stroke-width: 1.5px;
 }

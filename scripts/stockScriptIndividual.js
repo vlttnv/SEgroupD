@@ -2,12 +2,12 @@
 //source - http://bl.ocks.org/mbostock/3902569
 
 //set for now (can update dynamically later for each graph
-var currency = "GBP";
-var csvFile = "data/ftse100.csv";
+var currency = "(£)";
+var csvFile = "data/aal.csv";
 
 //Set graph position
 var margin = {top: 10, right: 60, bottom: 100, left: 40};
-var width = 960 - margin.left - margin.right;
+var width = 1000 - margin.left - margin.right;
 var height = 500 - margin.top - margin.bottom;
 //dimensions for contect selector
 
@@ -15,11 +15,10 @@ var margin2 = {top: 430, right: 60, bottom: 20, left: 40};
 var height2 = 500 - margin2.top - margin2.bottom;
 
 //read date into a date object
-var getDate = d3.time.format("%e/%m/%Y").parse;
+var getDate = d3.time.format("%Y-%m-%e").parse;
 //for labels
-var splitData = d3.bisector(function (d) { return d.date; }).left;
+var splitData = d3.bisector(function (d) { return d.Date; }).left;
 var formatValue = d3.format(",.2f");
- 
 
 //set axis scales 
 var x = d3.time.scale().range([0, width]),
@@ -39,15 +38,15 @@ var brush = d3.svg.brush()
 
 var area = d3.svg.area()
         .interpolate("monotone")
-        .x(function(d) { return x(d.date); })
+        .x(function(d) { return x(d.Date); })
         .y0(height)
-        .y1(function(d) { return y(d.close); });
+        .y1(function(d) { return y(d.Close); });
 
 var area2 = d3.svg.area()
         .interpolate("monotone")
-        .x(function(d) { return x2(d.date); })
+        .x(function(d) { return x2(d.Date); })
         .y0(height2)
-        .y1(function(d) { return y2(d.close); });
+        .y1(function(d) { return y2(d.Close); });
 
 var svg = d3.select("body").append("svg")
         .attr("width", width + margin.left + margin.right + 100)
@@ -74,16 +73,17 @@ var context = svg.append("g")
 d3.csv( csvFile, function(error, data) {
 
         data.forEach(function(d) {
-        d.date = getDate(d.date);
-        d.close = +d.close;
+        d.Date = getDate(d.Date);
+		// d.Volume = +d.Volume;
+        d.Close = +d.Close;
         });
 		
 		data.sort(function (a, b) {
-		return a.date - b.date;
+		return a.Date - b.Date;
 		});
 
-        x.domain(d3.extent(data.map(function(d) { return d.date; })));
-        y.domain([0, d3.max(data.map(function(d) { return d.close; }))]);
+        x.domain(d3.extent(data.map(function(d) { return d.Date; })));
+        y.domain([0, d3.max(data.map(function(d) { return d.Close; }))]);
         x2.domain(x.domain());
         y2.domain(y.domain());
 	
@@ -106,12 +106,12 @@ d3.csv( csvFile, function(error, data) {
 		  
 	
 		//label y axis
-        svg.append("text")
+        focus.append("text")
           .attr("transform", "rotate(-90)")
           .attr("y", 6)
           .attr("dy", ".71em")
           .style("text-anchor", "end")
-          .text(currency);              
+          .text("Price (£)");              
 		
 		
         context.append("path")
@@ -140,20 +140,45 @@ d3.csv( csvFile, function(error, data) {
 		inter.append("rect")
 			.attr("x", 9)
 			// .attr("y", 9)
-			.attr("height", 30)
+			.attr("height", 100)
 			.attr("width", 100)
 			.attr("rx", 6)
 			.attr("ry", 6)
 		
-		var date = inter.append("text")
+	var date = inter.append("text")
 				.attr("x", 12)
 				.attr("y", 10)
 				.attr("dy", ".35em");
-		  
-		var price = inter.append("text")
+	
+	var volume = inter.append("text")
 				.attr("x", 12)
-				.attr("y", 20)
-				.attr("dy", ".35em");		
+				.attr("y", 25)
+				.attr("dy", ".35em");	
+		  
+	var market = inter.append("text")
+				.attr("x", 12)
+				.attr("y", 45)
+				.attr("dy", ".35em");
+				
+	var open = inter.append("text")
+				.attr("x", 12)
+				.attr("y", 60)
+				.attr("dy", ".35em");	
+		  
+	var close = inter.append("text")
+				.attr("x", 12)
+				.attr("y", 70)
+				.attr("dy", ".35em");
+	
+	var high = inter.append("text")
+				.attr("x", 12)
+				.attr("y", 80)
+				.attr("dy", ".35em");	
+		  
+	var low = inter.append("text")
+				.attr("x", 12)
+				.attr("y", 90)
+				.attr("dy", ".35em");	
 		
 	focus.append("rect")
       .attr("class", "overlay")
@@ -168,10 +193,15 @@ d3.csv( csvFile, function(error, data) {
 			i = splitData(data, x0, 1),
 			d0 = data[i - 1],
 			d1 = data[i],
-			d = x0 - d0.date > d1.date - x0 ? d1 : d0;
-		inter.attr("transform", "translate(" + x(d.date) + "," + y(d.close) + ")");
-		date.text(d.date.toDateString());
-		price.text(formatValue(d.close));
+			d = x0 - d0.Date > d1.Date - x0 ? d1 : d0;
+		inter.attr("transform", "translate(" + x(d.Date) + "," + y(d.Close) + ")");
+		date.text(d.Date.toDateString());
+		volume.text("Volume:" + d.Volume);
+		market.text("Market");
+		open.text("Open: £" + formatValue(d.Open));
+		close.text("Close: £" + formatValue(d.Close));
+		high.text("High: £" + formatValue(d.High));
+		low.text("Low: £" + formatValue(d.Low));
 	}
 });
 
