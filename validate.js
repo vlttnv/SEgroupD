@@ -11,7 +11,7 @@ else{
 
 function goToMainPage(){
 	// Change to the main URL
-	window.location.href = "main_page.html";
+	window.location.href = "html/main_page.html";
 }
 
 function validatePassword(){
@@ -38,6 +38,9 @@ function validateUsername(){
 	"use strict";
 	var element = document.getElementById("user");
 	//TODO: send to server and check if username exists
+
+
+
 	var exists = false;
 	if (exists)
 		element.setCustomValidity("Username already exists");
@@ -67,44 +70,10 @@ function sendForm(){
   	// }
 }
 
-function checkPassword(){
-	"use strict";
-	var password = document.getElementById("password").value;
-	var correct = true;
-	//TODO check password
-	
-	return correct;
-}
-
-function validateUser(){
-	"use strict";
-	var username = document.getElementById("user");
-	var password = document.getElementById("password");
-	var error = document.getElementById("error");
-	//TODO check username
-
-	var exists = true;
-	if (username.checkValidity() && password.checkValidity()){
-		if (!exists && !checkPassword()){
-			error.innerHTML = "Invalid username and/or password";
-			return false;
-		}
-		goToMainPage();
-	}	
-}
-
 // change default submit for registration form
 $(document).ready(function(){
     $( "#form" ).submit(function( event ) {
 		event.preventDefault();
 		sendForm();
-	});
-});
-
-// change default submit for login form
-$(document).ready(function(){
-    $( "#login" ).submit(function( event ) {
-		event.preventDefault();
-		validateUser();
 	});
 });

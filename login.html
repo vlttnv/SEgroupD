@@ -4,17 +4,16 @@
   	<head>
    		<meta charset="utf-8">
    		<title>Sign in</title>
-      <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
     	<script src="validate.js"></script>
   	</head>
 
   	<body>
-      		<form id="login">
+      		<form action="/login" method="post">
 	        	<h2>Sign in</h2>
 	        	<p id="error"></p>
-	        	<input type="text" id="user" placeholder="Username" required><br>
-	        	<input type="password" id="password" placeholder="Password" required><br>
-	        	<button type="submit">Sign In</button>
+	        	<input type="text" placeholder="Username" name="username" required><br>
+	        	<input type="password" placeholder="Password" name="password" required><br>
+	        	<button type="submit" value="Login">Sign In</button>
 	        	<p>New user?</p>
 	        	<button type="button" onclick="window.location.href='registration.html'">Sign Up</button>
       		</form>
