@@ -4,18 +4,26 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title></title>
-  <link rel="stylesheet" href="">
   <script src="validate.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Bootstrap -->
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/login.css" rel="stylesheet">
 </head>
 <body>
-    <h2>Sign in</h2>
-    <form action="/login" method="post">
-        <p id="error"></p>
-        <input type="text" placeholder="Username" name="username" required><br>
-        <input type="password" placeholder="Password" name="password" required><br>
-        <button type="submit" value="Login">Sign In</button>
-        <p>New user?</p>
-        <button type="button" onclick="window.location.href='registration.html'">Sign Up</button>
-    </form>
+    <div class="container">
+        <form class="form-signin" action="/login" method="post">
+            <h2 class="form-signin-heading">Sign in</h2>
+            <!-- <p id="error"></p> -->
+            <input class="form-control" type="text" placeholder="Username" name="username" required autofocus>
+            <input class="form-control" type="password" placeholder="Password" name="password" required>
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+            <a href="registration.html" class="btn btn-lg btn-info btn-block" type="submit">Create new account</a>
+        </form>
+    </div>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
 </body>
 </html>
