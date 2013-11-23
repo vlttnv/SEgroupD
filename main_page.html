@@ -1,0 +1,49 @@
+<html>
+<head>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+	<script src="http://jquery-csv.googlecode.com/git/src/jquery.csv.js"></script>
+	<script src="../scripts/main_page_script.js"></script>
+	<link rel="stylesheet" href="../css/main_page.css">
+</head>
+<body>
+	<div id="back" class="HiddenClass" onclick="goBack();">
+		<p>BACK</p>
+	</div>
+	<div id="mainContent">
+		<form name="search_form">
+			<label for="search">Search: </label>
+			<input type="text" placeholder="Name or symbol" onkeyup="show(this.value);" /><br>
+		</form>
+		<table id="stocks" border="1">
+			<tr onclick="onClick();">
+				<th>Name</th>
+				<th>Symbol</th>
+				<th>Last Trading Day</th>
+				<th>Last Opening Price</th>
+				<th>Last Trading Day's High</th>
+				<th>Last Trading Day's Low</th>
+				<th>Last Closing Price</th>
+				<th>Last Volume</th>
+			</tr>
+		</table>
+	</div>
+	<div id="individualStock" class="HiddenClass">
+		<table id="singleStockTable" border="1">
+			<tr>
+				<th>Trading Day</th>
+				<th>Opening Price</th>
+				<th>Trading Day's High</th>
+				<th>Trading Day's Low</th>
+				<th>Closing Price</th>
+				<th>Volume</th>
+			</tr>
+		</table>
+	</div>
+	<div id="test">
+	</div>
+</body>
+</html>
+
+difference from the last day: +/-, % +/-
+css green or red
+slides for different values in the table
