@@ -2,6 +2,10 @@
 body {
   background-color: #ced6d8;
   background-image: url("../img/stocks.png");
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
   padding-top: 40px;
   padding-bottom: 40px;
   font-family: 'Roboto', sans-serif;
