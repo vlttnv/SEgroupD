@@ -8,6 +8,7 @@
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
 	<script src="http://jquery-csv.googlecode.com/git/src/jquery.csv.js"></script>
 	<script src="scripts/main_page_script.js"></script>
+	<link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
 	<link rel="stylesheet" href="css/main_page.css">
 	<!-- Bootstrap -->
 	<link href="css/bootstrap.min.css" rel="stylesheet">
@@ -45,60 +46,368 @@
 						</ul>
 					</li>
 				</ul>
-				<ul class="nav navbar-nav navbar-right">
+				<!-- <ul class="nav navbar-nav navbar-right">
 					<li><a href="../navbar/">Default</a></li>
 					<li class="active"><a href="./">Static top</a></li>
 					<li><a href="../navbar-fixed-top/">Fixed top</a></li>
-				</ul>
+				</ul> -->
 			</div><!--/.nav-collapse -->
 		</div>
 	</div>
 
 
 
-	<div class="container">
+	<div class="container" style="background-color: rgba(240,240,240,0.4);">
 		<div class="row">
-			<div class="col-md-12"><div id="back" class="HiddenClass" onclick="goBack();">
-				<p>BACK</p>
-			</div></div>
+			<div class="col-xs-12">
+				<h1>FTSE 100 Overview</h1>
+				<p>add chart here</p>
+			</div>
 		</div>
-		<div class="row">
-			<div class="col-md-15">
-				<div id="mainContent" class="container">
-					<form name="search_form">
-						<label for="search">Search: </label>
-						<input type="text" placeholder="Name or symbol" onkeyup="show(this.value);" /><br>
-					</form>
-					<br>
-					<table class="table table-responsive" id="stocks">
-						<tr onclick="onClick();">
-							<th>Name</th>
-							<th>Symbol</th>
-							<th>Trading Day</th>
-							<th>Opening Price</th>
-							<th>High</th>
-							<th>Low</th>
-							<th>Closing Price</th>
-							<th>Volume</th>
-						</tr>
-					</table>
-				</div>
-				<div id="individualStock" class="HiddenClass">
-					<table id="singleStockTable">
-						<tr>
-							<th>Trading Day</th>
-							<th>Opening Price</th>
-							<th>Trading Day's High</th>
-							<th>Trading Day's Low</th>
-							<th>Closing Price</th>
-							<th>Volume</th>
-						</tr>
-					</table>
+		<div class="row" style="margin-bottom: 20px;">
+			<div class="col-xs-12">
+				<h1>Filter</h1>
+				<div class="row">
+					<div class="col-md-4">
+						<div class="form-group">
+							<label for="slider">By price range</label>
+							<br>
+							slider
+						</div>
+						
+					</div>
+					<div class="col-md-4">
+						<form name="search_form">
+							<div class="form-group">
+								<label for="filter">By name or symbol</label>
+								<input onkeyup="show(this.value);" type="email" class="form-control" id="filter" placeholder="GOOG">
+							</div>
+						</form>
+					</div>
 				</div>
 			</div>
 		</div>
-		
-		
+
+		<div  class="row" style="background-color: rgba(190,190,190,0.4); margin-bottom: 40px;">
+			<div class="col-xs-12">
+				<h1>Current Values</h1>
+			</div>
+			<div class="col-xs-12">
+				<div class="row">
+					<div class="col-xs-3">
+						<div style="border-bottom: 1px #000 dotted;">
+							<div class="row">
+								<div class="col-xs-12">
+									<p class="smallLable">AAL</p>
+								</div>
+								<div class="col-xs-12">
+									<div class="row">
+										<div class="col-xs-8">
+											<h4>1019.34</h4>
+										</div>
+										<div class="cols-xs-4">
+											<i class="fa fa-arrow-up arrowPu"></i>
+										</div>
+									</div>
+								</div>
+								<div class="col-xs-12">
+									<p class="bottomL">Anglo American PPL</p>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-xs-3">
+						<div style="border-bottom: 1px #000 dotted;">
+							<div class="row">
+								<div class="col-xs-12" style="border-left: 1px #000 dotted;">
+									<p class="smallLable">CCH</p>
+								</div>
+								<div class="col-xs-12" style="border-left: 1px #000 dotted;">
+									<div class="row">
+										<div class="col-xs-8">
+											<h4>32.34</h4>
+										</div>
+										<div class="cols-xs-4">
+											<i class="fa fa-arrow-down arrowPd"></i>
+										</div>
+									</div>
+								</div>
+								<div class="col-xs-12" style="border-left: 1px #000 dotted;">
+									<p class="bottomL">Coca-Cola HBC N</p>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-xs-3">
+						<div style="border-bottom: 1px #000 dotted;">
+							<div class="row">
+								<div class="col-xs-12">
+									<p class="smallLable">AAL</p>
+								</div>
+								<div class="col-xs-12">
+									<div class="row">
+										<div class="col-xs-8">
+											<h4>1019.34</h4>
+										</div>
+										<div class="cols-xs-4">
+											<i class="fa fa-arrow-up arrowPu"></i>
+										</div>
+									</div>
+								</div>
+								<div class="col-xs-12">
+									<p class="bottomL">Anglo American PPL</p>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-xs-3">
+						<div style="border-bottom: 1px #000 dotted;">
+							<div class="row">
+								<div class="col-xs-12" style="border-left: 1px #000 dotted;">
+									<p class="smallLable">CCH</p>
+								</div>
+								<div class="col-xs-12" style="border-left: 1px #000 dotted;">
+									<div class="row">
+										<div class="col-xs-8">
+											<h4>32.34</h4>
+										</div>
+										<div class="cols-xs-4">
+											<i class="fa fa-arrow-down arrowPd"></i>
+										</div>
+									</div>
+								</div>
+								<div class="col-xs-12" style="border-left: 1px #000 dotted;">
+									<p class="bottomL">Coca-Cola HBC N</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-3">
+						<div style="border-bottom: 1px #000 dotted;">
+							<div class="row">
+								<div class="col-xs-12">
+									<p class="smallLable">AAL</p>
+								</div>
+								<div class="col-xs-12">
+									<div class="row">
+										<div class="col-xs-8">
+											<h4>1019.34</h4>
+										</div>
+										<div class="cols-xs-4">
+											<i class="fa fa-arrow-up arrowPu"></i>
+										</div>
+									</div>
+								</div>
+								<div class="col-xs-12">
+									<p class="bottomL">Anglo American PPL</p>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-xs-3">
+						<div style="border-bottom: 1px #000 dotted;">
+							<div class="row">
+								<div class="col-xs-12" style="border-left: 1px #000 dotted;">
+									<p class="smallLable">CCH</p>
+								</div>
+								<div class="col-xs-12" style="border-left: 1px #000 dotted;">
+									<div class="row">
+										<div class="col-xs-8">
+											<h4>32.34</h4>
+										</div>
+										<div class="cols-xs-4">
+											<i class="fa fa-arrow-down arrowPd"></i>
+										</div>
+									</div>
+								</div>
+								<div class="col-xs-12" style="border-left: 1px #000 dotted;">
+									<p class="bottomL">Coca-Cola HBC N</p>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-xs-3">
+						<div style="border-bottom: 1px #000 dotted;">
+							<div class="row">
+								<div class="col-xs-12">
+									<p class="smallLable">AAL</p>
+								</div>
+								<div class="col-xs-12">
+									<div class="row">
+										<div class="col-xs-8">
+											<h4>1019.34</h4>
+										</div>
+										<div class="cols-xs-4">
+											<i class="fa fa-arrow-up arrowPu"></i>
+										</div>
+									</div>
+								</div>
+								<div class="col-xs-12">
+									<p class="bottomL">Anglo American PPL</p>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-xs-3">
+						<div style="border-bottom: 1px #000 dotted;">
+							<div class="row">
+								<div class="col-xs-12" style="border-left: 1px #000 dotted;">
+									<p class="smallLable">CCH</p>
+								</div>
+								<div class="col-xs-12" style="border-left: 1px #000 dotted;">
+									<div class="row">
+										<div class="col-xs-8">
+											<h4>32.34</h4>
+										</div>
+										<div class="cols-xs-4">
+											<i class="fa fa-arrow-down arrowPd"></i>
+										</div>
+									</div>
+								</div>
+								<div class="col-xs-12" style="border-left: 1px #000 dotted;">
+									<p class="bottomL">Coca-Cola HBC N</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-3">
+						<div>
+							<div class="row">
+								<div class="col-xs-12">
+									<p class="smallLable">AAL</p>
+								</div>
+								<div class="col-xs-12">
+									<div class="row">
+										<div class="col-xs-8">
+											<h4>1019.34</h4>
+										</div>
+										<div class="cols-xs-4">
+											<i class="fa fa-arrow-up arrowPu"></i>
+										</div>
+									</div>
+								</div>
+								<div class="col-xs-12">
+									<p class="bottomL">Anglo American PPL</p>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-xs-3">
+						<div>
+							<div class="row">
+								<div class="col-xs-12" style="border-left: 1px #000 dotted;">
+									<p class="smallLable">CCH</p>
+								</div>
+								<div class="col-xs-12" style="border-left: 1px #000 dotted;">
+									<div class="row">
+										<div class="col-xs-8">
+											<h4>32.34</h4>
+										</div>
+										<div class="cols-xs-4">
+											<i class="fa fa-arrow-down arrowPd"></i>
+										</div>
+									</div>
+								</div>
+								<div class="col-xs-12" style="border-left: 1px #000 dotted;">
+									<p class="bottomL">Coca-Cola HBC N</p>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-xs-3">
+						<div>
+							<div class="row">
+								<div class="col-xs-12">
+									<p class="smallLable">AAL</p>
+								</div>
+								<div class="col-xs-12">
+									<div class="row">
+										<div class="col-xs-8">
+											<h4>1019.34</h4>
+										</div>
+										<div class="cols-xs-4">
+											<i class="fa fa-arrow-up arrowPu"></i>
+										</div>
+									</div>
+								</div>
+								<div class="col-xs-12">
+									<p class="bottomL">Anglo American PPL</p>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-xs-3">
+						<div>
+							<div class="row">
+								<div class="col-xs-12" style="border-left: 1px #000 dotted;">
+									<p class="smallLable">CCH</p>
+								</div>
+								<div class="col-xs-12" style="border-left: 1px #000 dotted;">
+									<div class="row">
+										<div class="col-xs-8">
+											<h4>32.34</h4>
+										</div>
+										<div class="cols-xs-4">
+											<i class="fa fa-arrow-down arrowPd"></i>
+										</div>
+									</div>
+								</div>
+								<div class="col-xs-12" style="border-left: 1px #000 dotted;">
+									<p class="bottomL">Coca-Cola HBC N</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+
+		<div class="row">
+			<div class="col-md-12">
+				<div id="back" class="HiddenClass" onclick="goBack();">
+					<p>BACK</p>
+				</div>
+			</div>
+		</div>
+		<div class="container"><div class="row"><h1>Last Trading Day</h1></div></div>
+		<div class="row">
+
+			<div id="mainContent">
+				<table class="table table-responsive" id="stocks">
+					<tr onclick="onClick();">
+						<th>Name</th>
+						<th>Symbol</th>
+						<th>Trading Day</th>
+						<th>Opening Price</th>
+						<th>High</th>
+						<th>Low</th>
+						<th>Closing Price</th>
+						<th>Volume</th>
+					</tr>
+				</table>
+			</div>
+			<div id="individualStock" class="HiddenClass">
+				<table id="singleStockTable">
+					<tr>
+						<th>Trading Day</th>
+						<th>Opening Price</th>
+						<th>Trading Day's High</th>
+						<th>Trading Day's Low</th>
+						<th>Closing Price</th>
+						<th>Volume</th>
+					</tr>
+				</table>
+			</div>
+
+		</div>
+
+
 		<div id="test">
 		</div>
 	</div>
