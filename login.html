@@ -11,19 +11,27 @@
   <link href="css/login.css" rel="stylesheet">
 </head>
 <body>
-    <div class="container">
-        <form class="form-signin" action="/login" method="post">
-            <h2 class="form-signin-heading">Sign in</h2>
-            <!-- <p id="error"></p> -->
-            <input class="form-control" type="text" placeholder="Username" name="username" required autofocus>
-            <input class="form-control" type="password" placeholder="Password" name="password" required>
-            <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-            <a href="registration.html" class="btn btn-lg btn-info btn-block" type="submit">Create new account</a>
-        </form>
-    </div>
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://code.jquery.com/jquery.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="js/bootstrap.min.js"></script>
+  <div class="container">
+    <form class="form-signin" action="/login" method="post">
+      <div class="well">
+        <h2 class="form-signin-heading">Sign in</h2>
+        <!-- <p id="error"></p> -->
+        <label for="username">Username</label>
+        <input class="form-control" type="text" placeholder="john.smith" name="username" required autofocus>
+        <label for="password">Password</label>
+        <input class="form-control" type="password" placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;" name="password" required>
+        <div class="row">
+          <div class="col-md-6">
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
+          </div>
+        </div>
+        <!-- <a href="registration.html" class="btn btn-lg btn-info btn-block" type="submit">Create new account</a> -->
+      </div>
+    </form>
+  </div>
+  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+  <script src="https://code.jquery.com/jquery.js"></script>
+  <!-- Include all compiled plugins (below), or include individual files as needed -->
+  <script src="js/bootstrap.min.js"></script>
 </body>
 </html>
