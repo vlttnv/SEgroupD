@@ -7,18 +7,16 @@ $(document).ready(function() {
 	}
 })
 
-var keyData;
-
 function loadMainPage(name) {
 	var stocksTable = document.getElementById("stocks");
 	var key = new XMLHttpRequest();
-	key.open('GET', '../data/key.csv');
+	key.open('GET', 'data/key.csv');
 	key.onreadystatechange = function() {
 		if (key.readyState != 4) {
 			return;
 		}
-		var csvKey = key.responseText;
-		keyData = $.csv.toArrays(csvKey);
+		var csv = key.responseText;
+		var keyData = $.csv.toArrays(csv);
 		var table = '';
 		for (var row in keyData) {
 			var name = keyData[row][0];
@@ -33,7 +31,7 @@ function loadMainPage(name) {
 
 function addRow(name, symbol, stocksTable) {
 	var reader = new XMLHttpRequest();
-	reader.open('GET', '../data/' + symbol + '.csv');
+	reader.open('GET', 'data/' + symbol + '.csv');
 	reader.onreadystatechange = function() {
 		if (reader.readyState != 4) {
 			return;
@@ -56,8 +54,6 @@ function addRow(name, symbol, stocksTable) {
 }
 
 function onClick(symbol) {
-	var test = document.getElementById('test');
-	test.innerHTML = "HELLO";
 	var stocksTable = document.getElementById("mainContent");
 	stocksTable.className = "HiddenClass";
 	var individualStock = document.getElementById("individualStock");
@@ -67,7 +63,7 @@ function onClick(symbol) {
 	var back = document.getElementById("back");
 	back.className = "";
 	var reader = new XMLHttpRequest();
-	reader.open('GET', '../data/' + symbol + '.csv');
+	reader.open('GET', 'data/' + symbol + '.csv');
 	reader.onreadystatechange = function() {
 		if (reader.readyState != 4) {
 			return;
