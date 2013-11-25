@@ -1,11 +1,150 @@
+var testArray = new Array();
+testArray[0] = new Array();
+testArray[0][0] = "AAL";
+testArray[0][1] = "1019.34";
+testArray[0][2] = 2.3;
+testArray[0][3] = "Anglo American PLC";
+
+testArray[1] = new Array();
+testArray[1][0] = "AAL";
+testArray[1][1] = "1019.34";
+testArray[1][2] = -2.3;
+testArray[1][3] = "Anglo American PLC";
+
+testArray[2] = new Array();
+testArray[2][0] = "AAL";
+testArray[2][1] = "1019.34";
+testArray[2][2] = 2.3;
+testArray[2][3] = "Anglo American PLC";
+
+testArray[3] = new Array();
+testArray[3][0] = "AAL";
+testArray[3][1] = "1019.34";
+testArray[3][2] = -2.3;
+testArray[3][3] = "Anglo American PLC";
+
+testArray[4] = new Array();
+testArray[4][0] = "AAL";
+testArray[4][1] = "1019.34";
+testArray[4][2] = 2.3;
+testArray[4][3] = "Anglo American PLC";
+
+testArray[5] = new Array();
+testArray[5][0] = "AAL";
+testArray[5][1] = "1019.34";
+testArray[5][2] = -2.3;
+testArray[5][3] = "Anglo American PLC";
+
+testArray[6] = new Array();
+testArray[6][0] = "AAL";
+testArray[6][1] = "1019.34";
+testArray[6][2] = 2.3;
+testArray[6][3] = "Anglo American PLC";
+
+testArray[7] = new Array();
+testArray[7][0] = "AAL";
+testArray[7][1] = "1019.34";
+testArray[7][2] = -2.3;
+testArray[7][3] = "Anglo American PLC";
+
+testArray[8] = new Array();
+testArray[8][0] = "AAL";
+testArray[8][1] = "1019.34";
+testArray[8][2] = 2.3;
+testArray[8][3] = "Anglo American PLC";
+
+testArray[9] = new Array();
+testArray[9][0] = "AAL";
+testArray[9][1] = "1019.34";
+testArray[9][2] = -2.3;
+testArray[9][3] = "Anglo American PLC";
+
+testArray[10] = new Array();
+testArray[10][0] = "AAL";
+testArray[10][1] = "1019.34";
+testArray[10][2] = 2.3;
+testArray[10][3] = "Anglo American PLC";
+
+testArray[11] = new Array();
+testArray[11][0] = "AAL";
+testArray[11][1] = "1019.34";
+testArray[11][2] = -2.3;
+testArray[11][3] = "Anglo American PLC";
+
 $(document).ready(function() {
 	if (window.File && window.FileReader && window.FileList && window.Blob) {
-  	
+  		loadCurrentValues(testArray);
 		loadMainPage();
 	} else {
 	  alert('The File APIs are not fully supported in this browser.');
 	}
 })
+
+function loadCurrentValues(data) {
+	var currentValues = document.getElementById("currentValues");
+	var index;
+	var html = '';
+	for (index = 0; index < 12; index++) {
+		if (index > 7) {
+			html += '<div class=\"ItemPlaceholder BottomRowPlaceholder\">';
+		} else {
+			html += '<div class=\"ItemPlaceholder\">';
+		}
+		if ((index + 1) % 4 == 0) {
+			html += '<div class=\"LastItemContainer\">\r\n';
+		} else {
+			html += '<div class=\"ItemContainer\">\r\n';
+
+		}
+		html += '<div class=\"Symbol\">' + data[index][0] + '</div>\r\n' +
+			'<div class=\"Price\">' + data[index][1] + '</div>\r\n';
+		if (data[index][2] > 0) {
+			html += '<div class=\"ArrowUp Arrow fa fa-arrow-up\"></div>\r\n';
+		} else {
+			html += '<div class=\"ArrowDown Arrow fa fa-arrow-down\"></div>\r\n';
+
+		}
+		html += '<div class=\"Name\">' + data[0][3] + '</div>\r\n' +
+				'<div class=\"VerticalLine\"></div>\r\n';
+
+		html += '</div>\r\n</div>\r\n';
+	}
+	// for (index = 0; index < 4; index++) {
+	// 	html += '<div class=\"BottomRowPlaceHolder\">';
+	// 	if ((index + 1) % 4 == 0) {
+	// 		html += '<div class=\"LastItemContainer\">\r\n';
+	// 	} else {
+	// 		html += '<div class=\"ItemContainer\">\r\n';
+
+	// 	}
+	// 	html += '<div class=\"Symbol\">' + data[index][0] + '</div>\r\n' +
+	// 		'<div class=\"Price\">' + data[index][1] + '</div>\r\n';
+	// 	if (data[index][2] > 0) {
+	// 		html += '<div class=\"ArrowUp Arrow fa fa-arrow-up\"></div>\r\n';
+	// 	} else {
+	// 		html += '<div class=\"ArrowDown Arrow fa fa-arrow-down\"></div>\r\n';
+
+	// 	}
+	// 	html += '<div class=\"Name\">' + data[0][3] + '</div>\r\n' +
+	// 			'<div class=\"VerticalLine\"></div>\r\n';
+	// 	html += '</div>\r\n</div>\r\n';
+	// }
+	// var html = '<div class=\"ItemPlaceholder\">' +
+	// 		'<div class=\"ItemContainer\">\r\n' +
+	// 		'<div class=\"Symbol\">' + data[0][0] + '</div>\r\n' +
+	// 		'<div class=\"Price\">' + data[0][1] + '</div>\r\n';
+	// if (data[0][2] > 0) {
+	// 	html += '<div class=\"ArrowUp Arrow fa fa-arrow-up\"></div>\r\n';
+	// } else {
+	// 	html += '<div class=\"ArrowDown Arrow fa fa-arrow-down\"></div>\r\n';
+
+	// }
+	// html += '<div class=\"Name\">' + data[0][3] + '</div>\r\n' +
+	// 		'<div class=\"VerticalLine\"></div>\r\n';
+	// html += '</div>\r\n</div>\r\n';
+
+	currentValues.innerHTML = html;
+}
 
 function loadMainPage() {
 	var stocksTable = document.getElementById("stocks");
