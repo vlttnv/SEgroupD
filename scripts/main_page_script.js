@@ -74,8 +74,9 @@ var testArray;
 $(document).ready(function() {
 	if (window.File && window.FileReader && window.FileList && window.Blob) {
 		fillTestArray();
-  		loadCurrentValues(testArray, 0);
-  		loadPaging();
+		allData = testArray;
+  		loadCurrentValues(allData, 0);
+  		loadPaging(allData.length);
 		loadMainPage();
 	} else {
 	  alert('The File APIs are not fully supported in this browser.');
@@ -85,9 +86,14 @@ $(document).ready(function() {
 function fillTestArray() {
 	var index = 0;
 	testArray = new Array();
-	for (index = 0; index < 103; index++) {
+	testArray[0] = new Array();
+	testArray[0][0] = "AAL" + 0 + " ";
+	testArray[0][1] = "1019.34";
+	testArray[0][2] = 2.3;
+	testArray[0][3] = "Anglo American PLC";
+	for (index = 1; index < 113; index++) {
 		testArray[index] = new Array();
-		testArray[index][0] = "AAL" + index + " ";
+		testArray[index][0] = "BBL" + index + " ";
 		testArray[index][1] = "1019.34";
 		testArray[index][2] = 2.3;
 		testArray[index][3] = "Anglo American PLC";
@@ -95,13 +101,18 @@ function fillTestArray() {
 }
 
 var currentPage = 0;
+var currentDataInUse;
+var allData;
 
-function loadPaging() {
+function loadPaging(dataLength) {
 	var paging = document.getElementById("paging");
+	var width = Math.ceil(dataLength / 12) * 16;
+	paging.style.width = width + 'px';
 	var index;
 	var html = '<div id=\"page0\" class=\"CurrentPage\"' +
 				'onclick=\"pageOnClick(0)\"></div>\r\n';
-	for (index = 1; index < 9; index++) {
+	var pages = Math.ceil(dataLength / 12);
+	for (index = 1; index < pages; index++) {
 		html += '<div id=\"page' + index + '\" class=\"Page\"' +
 		'onclick=\"pageOnClick(' + index + ')\"></div>\r\n';
 	}
@@ -114,8 +125,21 @@ function pageOnClick(pageClicked) {
 	previousPage.className = "Page";
 	var newCurrentPage = document.getElementById("page" + pageClicked);
 	newCurrentPage.className = "CurrentPage";
-	loadCurrentValues(testArray, pageClicked * 12);
+	loadCurrentValues(currentDataInUse, pageClicked * 12);
 	currentPage = pageClicked;
+}
+
+function filterCurrent(value) {
+	currentDataInUse = new Array();
+	var index = 0;
+	for (var row in allData) {
+		if (allData[row][0].substring(0, value.length).toLowerCase() == value.toLowerCase()) {
+			currentDataInUse[index] = allData[row];
+			index++;
+		}
+	}
+	loadCurrentValues(currentDataInUse, 0);
+	loadPaging(index);
 }
 
 function loadCurrentValues(data, start) {
@@ -284,6 +308,7 @@ function show(value){
 			rows[row].className = "HiddenClass";
 		else rows[row].className = "";
 	}
+	filterCurrent(value);
 }
 
 var startDate;
