@@ -42,8 +42,20 @@ function addRow(name, symbol, stocksTable) {
 				'<td>' + name + '</td>\r\n' +
 				'<td>' + symbol + '</td>\r\n';
 		var lastDayRow = data[1];
+		var nextToLastDayRow = data[2];
+		var change = lastDayRow[1] / nextToLastDayRow[4] * 100 - 100;
+		var changeString = Math.round(change * 100) / 100;
+		if (change < 0) {
+			html += '<td> <i class=\'fa fa-caret-down NegativeChange\'>' +
+				'</i> ' + changeString + '% </td>\r\n'; 
+		} else if (change > 0) {
+			html += '<td> <i class=\'fa fa-caret-up PositiveChange\'>' +
+				'</i> ' + changeString + '% </td>\r\n'; 
+		} else {
+			html += '<td>' + changeString + '% </td>\r\n';
+		}
 		var i;
-		for (i = 0; i < 6; i++) {
+		for (i = 1; i < 6; i++) {
 			html += '<td>' + lastDayRow[i] + '</td>\r\n';
 		}
 		html += '</tr>\r\n';
