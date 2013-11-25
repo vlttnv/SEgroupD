@@ -78,3 +78,9 @@ h4 {
 	text-transform: uppercase;
 	font-family: 'Roboto', sans-serif; font-weight: 700;
 }
+.well {
+  background-color: #3a4b5c;
+  border: none;
+  color: #dadfe1;
+  padding: 10px 40px 40px 40px;
+}
