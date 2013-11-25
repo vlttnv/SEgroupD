@@ -1,3 +1,11 @@
 .HiddenClass {
 	display: none;
 }
+
+.PositiveChange {
+	color: #2ea58e;
+}
+
+.NegativeChange {
+	color: #d24444;
+}
