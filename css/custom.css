@@ -104,3 +104,33 @@ h4 {
 thead {
 	margin: 0 7px 0 7px;
 }
+h5 {
+	text-transform: uppercase;
+	font-family: 'Roboto', sans-serif; font-weight: 700;
+	margin-bottom: 0px;
+	color: #8c9299;
+
+}
+hr {
+	border: 1px solid #8c9299;
+}
+h2 {
+	text-transform: uppercase;
+	font-size: 24px;
+	font-family: 'Roboto', sans-serif; font-weight: 300;
+}
+.btn-primary {
+  border-color: #1abc9c;
+  background-color: #1abc9c;
+  text-transform: uppercase;
+  font-size: 10pt;
+  border-radius: 4px;
+  font-weight: bold;
+  height: 45px;
+}
+.btn-primary:hover {
+  border-color: #1abc9c;
+  background-color: #1bdfb8;
+  border-radius: 4px;
+  height: 45px;
+}
