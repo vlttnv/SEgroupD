@@ -6,12 +6,12 @@ var currency = "GBP";
 var csvFile = "data/ftse100.csv";
 
 //Set graph position
-var margin = {top: 10, right: 60, bottom: 100, left: 40};
+var margin = {top: 10, right: 60, bottom: 100, left: 200};
 var width = 960 - margin.left - margin.right;
 var height = 500 - margin.top - margin.bottom;
 //dimensions for contect selector
 
-var margin2 = {top: 430, right: 60, bottom: 20, left: 40};
+var margin2 = {top: 430, right: 60, bottom: 20, left: 200};
 var height2 = 500 - margin2.top - margin2.bottom;
 
 //read date into a date object
@@ -49,7 +49,7 @@ var area2 = d3.svg.area()
         .y0(height2)
         .y1(function(d) { return y2(d.close); });
 
-var svg = d3.select("body").append("svg")
+var svg = d3.select("#chart").append("svg")
         .attr("width", width + margin.left + margin.right + 100)
         .attr("height", height + margin.top + margin.bottom);
 
@@ -108,7 +108,7 @@ d3.csv( csvFile, function(error, data) {
 		//label y axis
         svg.append("text")
           .attr("transform", "rotate(-90)")
-          .attr("y", 6)
+          .attr("y", 206)
           .attr("dy", ".71em")
           .style("text-anchor", "end")
           .text(currency);              

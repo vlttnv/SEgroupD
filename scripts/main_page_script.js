@@ -1,13 +1,13 @@
 $(document).ready(function() {
 	if (window.File && window.FileReader && window.FileList && window.Blob) {
   	
-		loadMainPage(null);
+		loadMainPage();
 	} else {
 	  alert('The File APIs are not fully supported in this browser.');
 	}
 })
 
-function loadMainPage(name) {
+function loadMainPage() {
 	var stocksTable = document.getElementById("stocks");
 	var key = new XMLHttpRequest();
 	key.open('GET', 'data/key.csv');
@@ -21,8 +21,7 @@ function loadMainPage(name) {
 		for (var row in keyData) {
 			var name = keyData[row][0];
 			var symbol = keyData[row][1];
-			if (name != null && name.substr(0) == name)
-				addRow(name, symbol, stocksTable);
+			addRow(name, symbol, stocksTable);
 		}
 
 	};
@@ -119,4 +118,63 @@ function show(value){
 			rows[row].className = "HiddenClass";
 		else rows[row].className = "";
 	}
+}
+
+var startDate;
+var endDate;
+
+function showByDate(element){	
+	if (element.id == "startDate")
+		startDate = new Date(element.value);
+	else 
+		endDate = new Date(element.value);
+	// hide rows that do not match selected date
+	if (startDate != null && endDate != null){
+		var rows = document.getElementById('singleStockTable').rows;
+		for (var row = 0; row < rows.length; row++){
+			var day = new Date(rows[row].cells[0].innerHTML);
+			if (day < startDate || day > endDate)
+				rows[row].className = "HiddenClass";
+			else rows[row].className = "";
+		}
+	// remove values
+	document.getElementById('startDate').value = "";
+	startDate = null;
+	document.getElementById('endDate').value = "";
+	endDate = null;	
+	}
+}
+
+$(function() {
+	$( "#startDate" ).datepicker({ dateFormat: 'yy-mm-dd' });
+});
+
+$(function() {
+	$( "#endDate" ).datepicker({ dateFormat: 'yy-mm-dd' });
+});
+
+$(function() {
+    $( "#slider-range" ).slider({
+      range: true,
+      min: 0,
+      max: 5000,
+      values: [ 0, 5000 ],
+      slide: function( event, ui ) {
+        $( "#price" ).text( "By price range: £" + ui.values[ 0 ] + " - £" + ui.values[ 1 ] );		
+		filter(ui.values[ 0 ], ui.values[ 1 ]);
+      }
+    });
+    $( "#price" ).text( "By price range: £" + $( "#slider-range" ).slider( "values", 0 ) +
+      " - £" + $( "#slider-range" ).slider( "values", 1 ) );
+	  filter($( "#slider-range" ).slider( "values", 0 ), $( "#slider-range" ).slider( "values", 1 ));
+  });
+  
+function filter(low, high){
+	var rows = document.getElementById('stocks').rows;
+	for (var row = 0; row < rows.length; row++){
+		var price = rows[row].cells[4].innerHTML;
+		if (price < low || price > high)
+			rows[row].className = "HiddenClass";
+		else rows[row].className = "";
+	} 
 }
