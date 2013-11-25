@@ -74,3 +74,42 @@
 	font-family: 'Roboto', sans-serif; font-weight: 700;
 	padding-top: 8px;
 }
+
+#paging {
+	width: 144px;
+	margin: auto;
+	display: block;
+	margin-top: 20px;
+}
+
+.CurrentPage {
+	background: #2c3e50;
+	width: 10px;
+	height: 10px;
+	border-radius: 1000px;
+	margin: 0 3px;
+	float: left;
+}
+
+.Page {
+	background: rgba(44,62,80,0.5);
+	width: 10px;
+	height: 10px;
+	border-radius: 1000px;
+	margin: 0 3px;
+	float: left;
+}
+
+.Page:hover{
+	background: rgba(44,62,80,0.8);
+	cursor: pointer;
+}
+
+.CurrentPage:hover{
+	background: rgba(44,62,80,0.8);
+	cursor: pointer;
+}
+
+.Last {
+	clear: both;
+}
