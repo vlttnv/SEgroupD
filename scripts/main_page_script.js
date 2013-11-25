@@ -85,7 +85,7 @@ $(document).ready(function() {
 function fillTestArray() {
 	var index = 0;
 	testArray = new Array();
-	for (index = 0; index < 100; index++) {
+	for (index = 0; index < 103; index++) {
 		testArray[index] = new Array();
 		testArray[index][0] = "AAL" + index + " ";
 		testArray[index][1] = "1019.34";
@@ -122,8 +122,18 @@ function loadCurrentValues(data, start) {
 	var currentValues = document.getElementById("currentValues");
 	var index;
 	var html = '';
-	for (index = start; index < start + 12 && index < 100; index++) {
-		if (index - start > 7) {
+	var itemsInPage;
+	var indexLastRow;
+	if (start + 12 < data.length) {
+		itemsInPage = 12;
+		indexLastRow = start + 8;
+	} else {
+		itemsInPage = data.length - start;
+		var fullRows = Math.floor(itemsInPage / 4);
+		indexLastRow = itemsInPage <= 4 ? start : start + fullRows * 4;
+	}
+	for (index = start; index < start + 12 && index < data.length; index++) {
+		if (index >= indexLastRow) {
 			html += '<div class=\"ItemPlaceholder BottomRowPlaceholder\">';
 		} else {
 			html += '<div class=\"ItemPlaceholder\">';
