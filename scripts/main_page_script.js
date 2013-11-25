@@ -160,9 +160,21 @@ $(function() {
       max: 5000,
       values: [ 0, 5000 ],
       slide: function( event, ui ) {
-        $( "#price" ).text( "By price range: " + ui.values[ 0 ] + " - " + ui.values[ 1 ] );
+        $( "#price" ).text( "By price range: £" + ui.values[ 0 ] + " - £" + ui.values[ 1 ] );		
+		filter(ui.values[ 0 ], ui.values[ 1 ]);
       }
     });
-    $( "#price" ).text( "By price range: " + $( "#slider-range" ).slider( "values", 0 ) +
-      " - " + $( "#slider-range" ).slider( "values", 1 ) );
+    $( "#price" ).text( "By price range: £" + $( "#slider-range" ).slider( "values", 0 ) +
+      " - £" + $( "#slider-range" ).slider( "values", 1 ) );
+	  filter($( "#slider-range" ).slider( "values", 0 ), $( "#slider-range" ).slider( "values", 1 ));
   });
+  
+function filter(low, high){
+	var rows = document.getElementById('stocks').rows;
+	for (var row = 0; row < rows.length; row++){
+		var price = rows[row].cells[4].innerHTML;
+		if (price < low || price > high)
+			rows[row].className = "HiddenClass";
+		else rows[row].className = "";
+	} 
+}
