@@ -20,9 +20,18 @@
         <input class="form-control" type="text" name="username" required autofocus>
         <label for="password">Password</label>
         <input class="form-control" type="password" name="password" required>
+        <div class="row" >
+          <div class="col-xs-12">
+            <div class="alert alert-danger text-center">Wrong username or password</div>
+          </div>
+
+        </div>
         <div class="row">
-          <div class="col-xs-6">
+          <div class="col-xs-6" style="padding-right: 10px;">
             <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
+          </div>
+          <div class="col-xs-6" style="padding-left: 10px;">
+            <a href="registration.html" class="btn btn-lg btn-info btn-block">Register</a>
           </div>
         </div>
         <!-- <a href="registration.html" class="btn btn-lg btn-info btn-block" type="submit">Create new account</a> -->
